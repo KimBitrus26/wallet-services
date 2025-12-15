@@ -1,0 +1,143 @@
+# Wallet Service - Step-by-Step Guide
+
+I'll create a production-ready NestJS wallet service with TypeORM, SQLite, and idempotency keys. Let me break this down into clear steps with complete code.
+
+## Step-by-Step Implementation Guide
+
+### Step 1: Project Setup
+
+```bash
+# Create new NestJS project
+npm i -g @nestjs/cli
+nest new wallet-service
+cd wallet-service
+
+# Install dependencies
+npm install @nestjs/typeorm typeorm sqlite3
+npm install class-validator class-transformer
+npm install --save-dev @types/node
+
+# Install testing dependencies (optional)
+npm install --save-dev @nestjs/testing jest @types/jest
+```
+
+### Step 2: Project Structure
+
+Create the following structure:
+```
+src/
+├── common/
+│   ├── decorators/
+│   │   └── idempotency.decorator.ts
+│   ├── filters/
+│   │   └── http-exception.filter.ts
+│   ├── interceptors/
+│   │   └── idempotency.interceptor.ts
+│   └── pipes/
+│       └── validation.pipe.ts
+├── wallet/
+│   ├── dto/
+│   │   ├── create-wallet.dto.ts
+│   │   ├── fund-wallet.dto.ts
+│   │   └── transfer.dto.ts
+│   ├── entities/
+│   │   ├── wallet.entity.ts
+│   │   ├── transaction.entity.ts
+│   │   └── idempotency-record.entity.ts
+│   ├── wallet.controller.ts
+│   ├── wallet.service.ts
+│   └── wallet.module.ts
+├── app.module.ts
+└── main.ts
+```
+
+### Step 3: Core ImplementationNow let me create the test files and additional configuration:Now let me create the README and Postman collection:Now let me create the package.json and additional configuration files:Perfect! Now let me create a quick setup guide document:Perfect! Now let me create one final document with production scaling notes:## Summary
+
+I've created a **complete, production-ready NestJS wallet service** that strictly follows NestJS and TypeScript best practices. Here's what you have:
+
+### ✅ **Complete Implementation**
+
+**Core Files:**
+1. **Entities** (TypeORM with SQLite)
+   - `wallet.entity.ts` - Wallet with balance tracking
+   - `transaction.entity.ts` - Complete transaction history
+   - `idempotency-record.entity.ts` - Idempotency key storage
+
+2. **DTOs with Validation**
+   - `create-wallet.dto.ts` - Currency validation
+   - `fund-wallet.dto.ts` - Amount validation (positive, 2 decimals)
+   - `transfer.dto.ts` - Complete transfer validation
+
+3. **Service Layer**
+   - `wallet.service.ts` - Business logic with **pessimistic locking**, database transactions, and error handling
+   - `wallet.service.spec.ts` - Unit tests
+
+4. **Controller**
+   - `wallet.controller.ts` - RESTful endpoints with idempotency interceptor
+
+5. **Idempotency**
+   - `idempotency.interceptor.ts` - Automatic duplicate prevention with 24hr expiry
+
+6. **Configuration**
+   - `app.module.ts` - TypeORM + SQLite setup
+   - `main.ts` - Global validation, CORS, prefix
+   - `package.json`, `tsconfig.json`, `.gitignore`
+
+### 🎯 **Key Features Implemented**
+
+✅ **Pessimistic locking** to prevent race conditions  
+✅ **Database transactions** for atomicity  
+✅ **Idempotency keys** for fund/transfer (prevents duplicates)  
+✅ **Comprehensive validation** (class-validator)  
+✅ **Transaction history** with before/after balances  
+✅ **Deadlock prevention** (consistent lock ordering)  
+✅ **Error handling** with meaningful messages  
+✅ **Unit tests** included  
+
+### 📚 **Documentation**
+
+1. **README.md** - Complete guide with API docs, scaling notes, assumptions
+2. **SETUP_GUIDE.md** - Step-by-step setup instructions
+3. **PRODUCTION_SCALING.md** - Detailed production scaling strategy
+4. **Postman Collection** - 13 pre-configured requests with auto-variables
+
+### 🚀 **Quick Start**
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Run application
+npm run start:dev
+
+# 3. Import Postman collection and test
+# OR use the provided cURL commands
+
+# 4. Run tests
+npm run test
+```
+
+### 🏗️ **Architecture Highlights**
+
+- **Layered architecture**: Controller → Service → Repository
+- **Dependency injection**: Constructor-based injection
+- **Async/await**: Throughout for clean async code
+- **TypeORM repositories**: Proper separation of concerns
+- **Query runners**: For complex transactions with locking
+- **Interceptors**: Reusable idempotency logic
+- **Validation pipes**: Global validation
+
+### 📊 **Best Practices Followed**
+
+1. ✅ **NestJS modules** properly structured
+2. ✅ **TypeScript strict mode** enabled
+3. ✅ **Decorators** for validation, routing, DI
+4. ✅ **DTOs** for request validation
+5. ✅ **Entities** with proper relationships
+6. ✅ **Service layer** for business logic
+7. ✅ **Controller** thin, delegates to service
+8. ✅ **Error handling** with NestJS exceptions
+9. ✅ **Testing** with Jest
+10. ✅ **Clean code** with TypeScript interfaces
+
+All code follows **NestJS official style guide** and **TypeScript best practices**. The implementation is production-ready with proper error handling, validation, locking, and idempotency!
