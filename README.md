@@ -5,7 +5,7 @@
 - TypeScript
 - SQLite
 
-This project is a full-featured **wallet backend service** with wallet creation, wallet funding, transaction history, and idempotent operations. Users can create wallets, fund them, view wallet details, and track transactions securely.
+This project is a full-featured **wallet backend service** with wallet creation, wallet funding, transaction history, transfer fro wallet to wallet and idempotent operations. Users can create wallets, fund them, view wallet details, and track transactions securely.
 
 > **Note:** This version does **not include user authentication**. Anyone can create multiple wallets, including multiple wallets with the same currency.
 
@@ -15,6 +15,7 @@ This project is a full-featured **wallet backend service** with wallet creation,
 * Wallet funding is **transactional** and ensures balance consistency.
 * Transactions record the `amount`, `balanceBefore`, `balanceAfter`, `description`, and `status`.
 * Idempotency key is pass via headers
+* Transfer must be in the same currency
 
 ## Features
 ### Wallet Management
@@ -22,9 +23,9 @@ This project is a full-featured **wallet backend service** with wallet creation,
 * Retrieve all wallets
 * Retrieve wallet details with transaction history
 * Fund wallet with idempotency support
+* Transfer from wallet to wallet
 * Transaction tracking (balance before & after)
 * Graceful error handling with validation
-
 
 ## API Endpoints Overview
 ### Wallet Endpoints
